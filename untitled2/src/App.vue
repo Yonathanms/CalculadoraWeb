@@ -1,47 +1,69 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+import {ref} from "vue";
+
+const numero1 = ref(0);
+const numero2 = ref(0);
+const resultado = ref(0);
+
+const suma = () => {
+    resultado.value = numero1.value + numero2.value;
+}
+
+const resta = () => {
+    resultado.value = numero1.value - numero2.value;
+}
+
+const multiplicacion = () => {
+    resultado.value = numero1.value * numero2.value;
+}
+
+const division = () => {
+    resultado.value = numero1.value / numero2.value;
+}
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <h1> Calculadora</h1>
+    <div class="botones">
+        <button @click="suma" style="margin: 10px">Sumar </button>
+        <button @click="resta">Restar</button>
+        <button @click="division" style="margin: 10px">Dividir</button>
+        <button @click="multiplicacion">Multiplicar</button>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
     </div>
-  </header>
+    <div class="inputs">
+        <input type="number" v-model="numero1" >
+        <input type="number" v-model="numero2" style="margin: 10px">
+        <p>El resultado de la operación es: {{ resultado }}</p>
+    </div>
 
-  <main>
-    <TheWelcome />
-  </main>
+
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+
+h1{
+    text-align: center;
+    color: darkseagreen;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+input{
+    text-align: center;
+    width: 50px;
 }
-
-@media (min-width: 1024px) {
-  header {
+.inputs{
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
+}
+.botones{
+    height: 100px;
     display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+    justify-content: center;
+    align-items: center;
 }
 </style>
